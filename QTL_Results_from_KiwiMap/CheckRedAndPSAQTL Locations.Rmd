@@ -1,0 +1,178 @@
+---
+title: "Check Red and PSA Intervals on Chr9 and Chr 28"
+author: "Jibran Tahir, Sue Gardiner,Mareike Knaebel,Peter McAtee John McCallum"
+date: "23 August 2017"
+output: word_document
+---
+GOAL
+====
+
+- Take  a look at significant GBS SNPs from Redx and Hort16A x Russell on Chr 9 and Chr 28
+- also check locations relative to R genes identified in Benth
+
+### RGA Background from Cyril
+```
+in a nutshell:
+-hopQ1 is one of the Psa effectors recognized in benth (ie triggers an HR in benth when transiently expressed).
+-we have done a systematic silencing of benth R genes (hairpin library) and identified NRG1 as the R gene required for hopQ1-mediated HR (ie no HR when NRG1 is silenced in benth)
+-Arabidopsis lines transformed with NRG1 recognize hopQ1 (HR) and are more resistant to Pseudomonas.
+-Kiwifruit lines transformed with NRG1 aslo detect hopQ1 (HR) and are more resistant in tissue culture flooding assay.
+-there are 2 good homologs in red5 genome (chr9) but red5 is not resistant so either they are not expressed properly or they are not functional or there is some other partner missing or else.. (actually we know that one of them is functional in a complementation assay in benth, so more likely to be an expression issue or a missing partner)
+
+```
+### Mapping Background
+
+- QTL analysis for red and other flesh colour phenotypes was performed in 2 families from Kerikeri 2010 Block 15 using Elshire GBS genotyping against PS1.68.5 reference
+- Kiwiscan Red flesh QTL results here reported for Hort22d x 	T04.35-03-11g family (Ebrida Cross K09/CC/b15,35,39/cA4)
+- QTL mapping for Cane Death due to PSA was performed in Hort16A x Russell (eBrida Cross GL_287)
+- This summary just using non-parametric Kruskal Wallis tests of single marker association with traits 
+- K is distributed as Chi-square with k-1 df (ie 1 df in this case)
+
+#### Links
+- Sues report om iPlant https://iplant.plantandfood.co.nz/project/I150114/ReportingAndOutputs/Report%20on%20SSIF%20Psa%20QTL%20mapping%20and%20marker%20validation%202016.docx?Web=1
+- https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance. K values 
+- http://articles.extension.org/pages/32454/kruskal-wallis-statistic-to-identify-associations-between-markers-and-traits
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(data.table)
+```
+
+
+## Load up the KW Results for Red and PSA
+```{r, include=FALSE}
+DTred22D <- fread('../RedXFactor/QTL_results/Hort22d/Kruskal-Wallis/IP_red_KW.txt')
+DTred22D[,c('Trait','Parent'):=list("IP_red",'Hort22d')]
+DTredT04 <- fread('../RedXFactor/QTL_results/T04.35-03-11/Kruskal-Wallis/IP_red_KW.txt')
+DTredT04[,c('Trait','Parent'):=list("IP_red",'T04.35-03-11')]
+DTdeath16A <- fread('./Hort16AxRussellCaneDeathKW_preliminary.csv')
+DTdeath16A[,c('Trait','Parent'):=list("Cane Death",'Hort16A')]
+DTdeathRussell <- fread('./RussellCaneDeathKW_preliminary.csv')
+DTdeathRussell[,c('Trait','Parent'):=list("Cane Death",'Russell')]
+DT <- rbindlist(list(DTred22D,DTredT04,DTdeath16A,DTdeathRussell),fill=TRUE)
+setnames(DT,'K*','K')
+```
+```{r}
+DT[1:5,1:8,with=FALSE]
+```
+
+
+### Split the Locus Field
+```{r, warning=FALSE, include=FALSE}
+DT[,c('CHR','POS'):=tstrsplit(Locus,"_",keep = c(1,2),type.convert=TRUE)]
+DT[,POS:=as.numeric(POS)]
+DT[,CHR:=as.numeric(gsub('^S','',CHR))]
+```
+
+
+### Calculate the P value for K
+
+- make this -log so we can plot it
+- same as plotting K but we get an idea of probabilities
+
+```{r, include=FALSE}
+DT[,logpK:=-pchisq(K, df=1,lower.tail = FALSE,log.p = TRUE)]
+```
+
+## Plot CHR27 and 28
+```{r, fig.height=5, fig.width=5}
+DT[CHR==28 | CHR == 27] %>% 
+    ggplot(aes(x=POS/1e6,y=logpK)) +
+    geom_point(aes(color=Trait,shape=Parent)) +
+  scale_colour_manual(values=c('Black','Red'),
+                      labels=c('PSA Cane death','Inner Pericarp Red')) + 
+    ylab('-log P-value') +
+    xlab('Mbp') +
+  facet_wrap(~ CHR,nrow=2) +
+  ggtitle('CHR27 & 28: \n PS1.68.5 GBS Marker Kruskal-Wallis Tests ')
+```
+
+### Take a Look at Chr 9 Effectors
+
+Cyril says: "Hi John
+some info re R genes identified in benthamiana.
+So far we have evidences of improved resistance in kiwifruit only with NRG1, the other 2 R genes haven’t been cloned and tested yet.
+Also, only NRG1 seems to have a good homolog in KF genome (actually 2 good hits on chr 9).
+ 
+Effector: HopQ1
+N. benthamiana R gene:
+NRG1 (NbS00018358g0013.1)
+KF best hit: >60% sim
+7025167  Acc10377.1  AcNRG1L2  CHR9
+7025398  Acc10606.1  AcNRG1L1  CHR9
+ 
+Effector: HopZ5
+N. benthamiana R gene:
+NbS00007796g0005.1
+NbS00012936g0019.1
+KF best hit: poor <40% sim
+7031053 Acc16194.2 best hit for NbS00007796g0005.1
+7031914  Acc17040.1 best hit for NbS00012936g0019.1
+ 
+Effector: HopAS1
+N. benthamiana R gene:
+NbC24952794g0001.1
+KF best hit:   48% sim
+7021416 Acc06652.1
+ 
+Let me know if you need sequences.
+ 
+Cheers
+Cyril"
+
+
+#### Check these in PS1.68.5 and 1.69.0
+
+```
+[12:41][cfljam@aklppf31:Redder_Faster] $ grep  'Acc10377.1\|Acc10606.1'  /output/genomic/plant/Actinidia/chinensis/CK51F3_01/Genome/Assembly/PS1/1.68.5/ManualGeneAnnotation/Latest_ver
+sion_of_gene_models/Red5_manno_110517183018.gff3 | grep mRNA                                                                                                                           
+CHR9    ManualAnnotation1.0     mRNA    8009460 8017113 .       +       .       ID=Acc10377.1;Name=Acc10377.1;ManualQualityScore=2F;Parent=Acc10377;RSSG=1;date_creation=2016-07-02;dat
+e_last_modified=2016-07-02;unique_name=b9abe591-c3b4-4b4f-883a-b31664a9ac83                                                                                                            |
+CHR9    ManualAnnotation1.0     mRNA    12763811        12772626        .       +       .       ID=Acc10606.1;Name=Acc10606.1;ManualQualityScore=2F;Parent=Acc10606;RSSG=1;date_creatio|
+n=2016-07-05;date_last_modified=2016-07-05;unique_name=0739076c-72ec-440e-88ae-cfe9c5b7f720        
+[12:49][cfljam@aklppf31:Redder_Faster] $ grep  'Acc10377.1\|Acc10606.1'  /output/genomic/plant/Actinidia/chinensis/CK51F3_01/Genome/Assembly/PS1/1.69.0/GeneModels/Released_to_Genbank/
+Red5_manno_080817093658.gff3  | grep mRNA                                                                                                                                              
+LG9     PS1.1.69.0      mRNA    8094557 8102210 .       +       .       ID=Acc10377.1;Name=Acc10377.1;Parent=Acc10377;Dbxref=InterPro:IPR027417;description=Disease%2Cresistance%2Cprot
+ein;experiment=COORDINATES:Manual curation with Apollo2 and RNASeq;manual_quality_score=2F                                                                                             |
+LG9     PS1.1.69.0      mRNA    12824722        12833537        .       +       .       ID=Acc10606.1;Name=Acc10606.1;Parent=Acc10606;Dbxref=InterPro:IPR027417;description=Disease%2Cr|
+esistance%2Cprotein;experiment=COORDINATES:Manual curation with Apollo2 and RNASeq;manual_quality_score=2F       
+```
+
+
+## Plot CHR 9
+
+** One of these is VERY close to major red QTL**
+
+```{r, fig.height=5, fig.width=8, warning=FALSE}
+DT[CHR==9] %>%     
+  ggplot(aes(x=POS,y=logpK)) +
+    geom_point(aes(color=Trait,shape=Parent),size=3) +
+  theme(axis.text.x=element_text(angle=90, vjust=0.5, size=8)) +
+   scale_colour_manual(values=c('Black','Red'),
+                      labels=c('PSA Cane death','Inner Pericarp Red')) + 
+  ggtitle('CHR9: PS1.68.5 GBS Marker KW plus HopQ1 Effector Homologs') +
+  geom_point(x=8009460,y=12,size=5) +
+  geom_point(x=12824722,y=12,size=5) +
+  annotate('text',x=10e6,y=12,label='AcNRG') +
+ annotate('text',x=15e6,y=12,label='AcNRG') 
+  
+```
+
+### Source Control Details
+```{bash Git Info, echo=TRUE}
+git remote -v
+git log -1
+```
+
