@@ -1,4 +1,6 @@
-# Genetic Mapping in Hort16AxRussell
+# Genetic Mapping in Hort16A x Russell
 
-## Jibran Tahir et al 
+## Jibran Tahir, Sue Gardiner, David Chagne et al 
 ## May 2018
+
+------------
