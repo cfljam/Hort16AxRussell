@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <FastqToTagCountPlugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/01_RawSequence/</i>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/01_IndividualTagCounts</o>
+            <k>/input/genomic/plant/Actinidia/chinensis/GBS/2016_CAGRF12857/KF3_KeaPlantID.txt</k>
+            <e>BamHI</e>
+            <s>800000000</s>
+            <c>3</c>
+        </FastqToTagCountPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>

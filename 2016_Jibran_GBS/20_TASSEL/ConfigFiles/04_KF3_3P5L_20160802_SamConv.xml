@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <SAMConverterPlugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/02_MergedTagCounts/KF3_3P5L_20160802.sam</i>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/04_TOPM/KF3_3P5L_20160802.topm</o>
+        </SAMConverterPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>
