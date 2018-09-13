@@ -84,13 +84,13 @@ Phenotypeallmapqtlxlsx.txt
 
 Map files (output maps) and phase files are provided above.
 
+Input data for rQTL is 
+FLD1, FLD2, Stab1 and Flood - Hort16A or Russell. csv files
+
 
 QTL data for Hort16A and Russellw will be uploaded;
 
 
-
-
-Results for Q
 ## May 2018
 
 ------------
