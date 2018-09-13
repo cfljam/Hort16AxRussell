@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TasselPipeline>
+    <fork1>
+        <MergeDuplicateSNPsPlugin>
+            <hmp>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/06_HapMap/01_UnfilteredSNPs/03_PivotMergedTaxaTBT.c14.hmp.txt</hmp>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/06_HapMap/02_MergeDupSNPs/KF3_3P5L_20160802_chr14.hmp.txt.gz</o>
+            <misMat>0.01</misMat>
+            <callHets/>
+            <s>14</s>
+            <e>14</e>
+        </MergeDuplicateSNPsPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>

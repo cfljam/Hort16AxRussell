@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <ModifyTBTHDF5Plugin>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/05_TBT/01_IndividualTBT/KF3_3P5L_TBT_20160802.h5</o>
+            <p>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/05_TBT/03_PivotMergedTaxaTBT/KF3_3P5L_mergeTBTHDF5_mergedtaxa_pivot_20160802.h5</p>
+            <L>FAKELOG_DELETEME.txt</L>
+        </ModifyTBTHDF5Plugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>
