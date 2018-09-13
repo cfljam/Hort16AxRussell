@@ -1,5 +1,6 @@
 Background:
 Towards New Kiwifruit Cultivars with Durable Psa Resistance is an Agmardt Project- Sue Gardiner David Chagne Luis Gea and Jibran Tahir
+John McCallum is leading the Psa marker work with the industry.
 
 In the AGMARDT project, a diploid (Hort16AxRussell and a tetraploid (rml-022) Actinidia chinensis breeding population have been selected for the purpose of mapping and identifying the genes that control resistance or tolerance to Psa Biovar 3
 
