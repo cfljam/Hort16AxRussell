@@ -1,4 +1,4 @@
-Background:
+#Background:
 Towards New Kiwifruit Cultivars with Durable Psa Resistance is an Agmardt Project- Sue Gardiner David Chagne Luis Gea and Jibran Tahir.
 John McCallum is leading the Psa marker work with the industry.
 
@@ -23,6 +23,7 @@ http://storage.powerplant.pfr.co.nz/workspace/hrpjxt/SNPcallingHR/KF3.xlsx
 
 BAM and SAM files were generated for each plate and lane seperately.
 http://storage.powerplant.pfr.co.nz/workspace/hrpjxt/SNPcallingHR/
+
 P1
 
 P1-1.bam
@@ -35,6 +36,7 @@ P1-2.sorted.bam
 P1-2.sorted.bam.bai
 
 P2
+
 P2-1.bam
 P2-1.sam
 P2-1.sorted.bam
