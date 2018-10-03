@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <SeqToTBTHDF5Plugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/01_RawSequence/</i>
+            <k>/input/genomic/plant/Actinidia/chinensis/GBS/2016_CAGRF12857/KF3_KeaPlantID.txt</k>
+            <e>BamHI</e>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/05_TBT/01_IndividualTBT/KF3_3P5L_TBT_20160802.h5</o>
+            <s>200000000</s>
+            <L>FAKELOG_DELETEME.txt</L>
+            <t>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/02_MergedTagCounts/KF3_3P5L_mergedtagcounts_20160802.cnt</t>
+        </SeqToTBTHDF5Plugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>

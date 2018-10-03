@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TasselPipeline>
+    <fork1>
+        <TagsToSNPByAlignmentPlugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/05_TBT/03_PivotMergedTaxaTBT/KF3_3P5L_mergeTBTHDF5_mergedtaxa_pivot_20160802.h5</i>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/06_HapMap/01_UnfilteredSNPs</o>
+            <m>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/04_TOPM/KF3_3P5L_20160802.topm</m>
+            <mnMAF>0.001</mnMAF>
+            <mnMAC>3</mnMAC>
+            <mnLCov>0.1</mnLCov>
+            <mxSites>8000000</mxSites>
+            <s>24</s>
+            <e>24</e>
+        </TagsToSNPByAlignmentPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>

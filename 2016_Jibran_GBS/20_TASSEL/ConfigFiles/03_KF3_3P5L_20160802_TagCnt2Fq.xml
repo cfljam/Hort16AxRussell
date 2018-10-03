@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <TagCountToFastqPlugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/02_MergedTagCounts/KF3_3P5L_mergedtagcounts_20160802.cnt</i>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/02_MergedTagCounts/KF3_3P5L_20160802.fq</o>
+            <c>3</c>
+        </TagCountToFastqPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>

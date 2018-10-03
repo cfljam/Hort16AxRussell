@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <TasselPipeline>
+    <fork1>
+        <MergeMultipleTagCountPlugin>
+            <i>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/01_IndividualTagCounts</i>
+            <o>/workspace/hrachd/Actinidia/2016_CAGRF12857/20_TASSEL/02_TagCounts/02_MergedTagCounts/KF3_3P5L_mergedtagcounts_20160802.cnt</o>
+            <c>3</c>
+        </MergeMultipleTagCountPlugin>
+    </fork1>
+    <runfork1/>
+</TasselPipeline>
